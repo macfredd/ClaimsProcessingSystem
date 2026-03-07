@@ -1,4 +1,6 @@
+using Claims.Application.Repositories;
 using Claims.Infrastructure.Persistence;
+using Claims.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +21,8 @@ public static class DependencyInjection
         {
             options.UseNpgsql(connectionString);
         });
+
+        services.AddScoped<IClaimRepository, ClaimRepository>();
 
         return services;
     }
