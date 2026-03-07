@@ -60,3 +60,21 @@ cd ClaimsProcessingSystem
 ## SSH Setup (Multiple Accounts)
 
 If you need to set up SSH for the macfredd account on a new machine, see [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) or the SSH configuration steps in the project history.
+
+---
+
+## Fix: "The authenticity of host 'github.com' can't be established"
+
+If SSH asks for confirmation every time you connect, add GitHub's host key to `known_hosts`:
+
+```powershell
+$githubKey = "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl"
+Add-Content -Path $HOME\.ssh\known_hosts -Value $githubKey
+```
+
+Verify:
+```powershell
+ssh -T git@github.com
+```
+
+Should respond: `Hi macfredd! You've successfully authenticated...` without prompting.
