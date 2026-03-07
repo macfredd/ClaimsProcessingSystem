@@ -61,8 +61,15 @@ dotnet ef --version
 
 ## Step 4: Clone the Project (if using Git)
 
+**SSH (recommended - use when you have multiple GitHub accounts):**
 ```powershell
-git clone <repository-url> C:\Users\<YourUser>\Claims
+git clone git@github.com:macfredd/ClaimsProcessingSystem.git C:\Users\<YourUser>\Claims
+cd C:\Users\<YourUser>\Claims
+```
+
+**HTTPS:**
+```powershell
+git clone https://github.com/macfredd/ClaimsProcessingSystem.git C:\Users\<YourUser>\Claims
 cd C:\Users\<YourUser>\Claims
 ```
 
@@ -143,7 +150,7 @@ docker exec -it claims-postgres psql -U postgres -d ClaimsDb
 ### EF Core Migrations
 ```powershell
 # Add new migration
-dotnet ef migrations add MigrationName --project src/Claims.Infrastructure --startup-project src/Claims.Api --output-dir Persistence/Migrations
+dotnet ef migrations add MigrationName --project src/Claims.Infrastructure --startup-project src/Claims.Api
 
 # Apply migrations
 dotnet ef database update --project src/Claims.Infrastructure --startup-project src/Claims.Api
@@ -174,3 +181,7 @@ dotnet test                               # Run tests (when available)
 ### Migration fails
 - Ensure PostgreSQL is running: `docker-compose up -d`
 - Verify connection string in `src/Claims.Api/appsettings.json`.
+
+### Git: "Permission denied" when pushing
+- Use SSH instead of HTTPS if you have multiple GitHub accounts.
+- See [GIT.md](GIT.md) for SSH setup and multi-account configuration.

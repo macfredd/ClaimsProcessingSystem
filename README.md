@@ -43,7 +43,31 @@ src/
 
 See [docs/DEVELOPMENT_SESSION.md](docs/DEVELOPMENT_SESSION.md) for detailed setup.
 
+## GitHub
+
+**Repository:** [github.com/macfredd/ClaimsProcessingSystem](https://github.com/macfredd/ClaimsProcessingSystem)
+
+**Clone (SSH - recommended for multiple GitHub accounts):**
+```powershell
+git clone git@github.com:macfredd/ClaimsProcessingSystem.git
+cd ClaimsProcessingSystem
+```
+
+**Clone (HTTPS):**
+```powershell
+git clone https://github.com/macfredd/ClaimsProcessingSystem.git
+cd ClaimsProcessingSystem
+```
+
+**Push to GitHub (first time):** Use SSH to avoid credential conflicts with other accounts.
+```powershell
+git remote add origin git@github.com:macfredd/ClaimsProcessingSystem.git
+git branch -M main
+git push -u origin main
+```
+
 ## Documentation
 
 - [Development Session](docs/DEVELOPMENT_SESSION.md) - Daily workflow
 - [Environment Setup](docs/ENVIRONMENT_SETUP.md) - New machine setup
+- [Git & SSH](docs/GIT.md) - Repository access, SSH setup for multiple accounts
