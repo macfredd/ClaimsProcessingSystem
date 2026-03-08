@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddEventBus();
 builder.Services.AddScoped<Claims.Application.Claims.SubmitClaimHandler>();
+builder.Services.AddScoped<Claims.Application.Claims.GetClaimByIdHandler>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

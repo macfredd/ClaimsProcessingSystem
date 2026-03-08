@@ -8,10 +8,12 @@ namespace Claims.Api.Controllers;
 public class ClaimsController : ControllerBase
 {
     private readonly SubmitClaimHandler _submitClaimHandler;
+    private readonly GetClaimByIdHandler _getClaimByIdHandler;
 
-    public ClaimsController(SubmitClaimHandler submitClaimHandler)
+    public ClaimsController(SubmitClaimHandler submitClaimHandler, GetClaimByIdHandler getClaimByIdHandler)
     {
         _submitClaimHandler = submitClaimHandler;
+        _getClaimByIdHandler = getClaimByIdHandler;
     }
 
     [HttpPost]
@@ -29,6 +31,30 @@ public class ClaimsController : ControllerBase
         var claim = await _submitClaimHandler.HandleAsync(command, cancellationToken);
 
         return Created($"/api/claims/{claim.Id}", new ClaimResponse(
+            claim.Id,
+            claim.CustomerId,
+            claim.Type,
+            claim.Amount,
+            claim.Description,
+            claim.Status.ToString(),
+            claim.CreatedAt,
+            claim.UpdatedAt));
+    }
+
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(ClaimResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetClaimById(Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        var claim = await _getClaimByIdHandler.HandleAsync(id, cancellationToken);
+
+        if (claim == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(new ClaimResponse(
             claim.Id,
             claim.CustomerId,
             claim.Type,
