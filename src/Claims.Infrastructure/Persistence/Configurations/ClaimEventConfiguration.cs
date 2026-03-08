@@ -12,17 +12,22 @@ internal class ClaimEventConfiguration : IEntityTypeConfiguration<ClaimEventEnti
 
         builder.HasKey(e => e.Id);
 
+        builder.Property(e => e.Id).HasColumnName("id");
         builder.Property(e => e.ClaimId)
+            .HasColumnName("claim_id")
             .IsRequired();
 
         builder.Property(e => e.EventType)
+            .HasColumnName("event_type")
             .IsRequired()
             .HasMaxLength(100);
 
         builder.Property(e => e.Payload)
+            .HasColumnName("payload")
             .HasMaxLength(4000);
 
         builder.Property(e => e.OccurredAt)
+            .HasColumnName("occurred_at")
             .IsRequired();
 
         builder.HasIndex(e => e.ClaimId);

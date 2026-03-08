@@ -12,23 +12,29 @@ internal class WorkOrderConfiguration : IEntityTypeConfiguration<WorkOrder>
 
         builder.HasKey(w => w.Id);
 
+        builder.Property(w => w.Id).HasColumnName("id");
         builder.Property(w => w.ClaimId)
+            .HasColumnName("claim_id")
             .IsRequired();
 
         builder.Property(w => w.Type)
+            .HasColumnName("type")
             .IsRequired()
             .HasConversion<string>()
             .HasMaxLength(50);
 
         builder.Property(w => w.Status)
+            .HasColumnName("status")
             .IsRequired()
             .HasConversion<string>()
             .HasMaxLength(50);
 
         builder.Property(w => w.AssignedTo)
+            .HasColumnName("assigned_to")
             .HasMaxLength(200);
 
         builder.Property(w => w.CreatedAt)
+            .HasColumnName("created_at")
             .IsRequired();
 
         builder.HasIndex(w => w.ClaimId);
