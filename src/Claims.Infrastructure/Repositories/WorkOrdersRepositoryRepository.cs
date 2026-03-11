@@ -11,7 +11,7 @@ namespace Claims.Infrastructure.Repositories;
 /// <remarks>This class implements the IWorksOrdersRepository interface and is intended for internal use within
 /// the data access layer. It encapsulates operations for adding and retrieving work orders associated with
 /// claims.</remarks>
-internal class WorkOrdersRepositoryRepository : IWorksOrdersRepository
+internal class WorkOrdersRepositoryRepository : IWorkOrderRepository
 {
 
     private readonly ClaimsDbContext _context;

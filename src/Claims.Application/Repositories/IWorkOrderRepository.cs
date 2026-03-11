@@ -8,7 +8,7 @@ namespace Claims.Application.Repositories;
 /// <remarks>This interface provides asynchronous methods for adding new work orders and retrieving existing work
 /// orders by their unique identifier or associated claim. Implementations are expected to handle data persistence and
 /// retrieval, and should support cancellation via the provided cancellation tokens.</remarks>
-public interface IWorksOrdersRepository
+public interface IWorkOrderRepository
 {
     Task<WorkOrder> AddAsync(WorkOrder workOrder, CancellationToken cancellationToken = default);
     Task<WorkOrder?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
