@@ -23,6 +23,7 @@ public static class DependencyInjection
         });
 
         services.AddScoped<IClaimRepository, ClaimRepository>();
+        services.AddScoped<IWorkOrderRepository, WorkOrdersRepositoryRepository>();
 
         return services;
     }
