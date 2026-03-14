@@ -1,10 +1,12 @@
 using Claims.EventBus;
 using Claims.Infrastructure;
+using Claims.RulesEngine;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddEventBus();
+builder.Services.AddRulesEngine();
 
 // Register handlers for claims
 builder.Services.AddScoped<Claims.Application.Claims.SubmitClaimHandler>();
