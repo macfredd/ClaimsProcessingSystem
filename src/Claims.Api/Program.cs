@@ -1,3 +1,4 @@
+using Claims.Application;
 using Claims.EventBus;
 using Claims.Infrastructure;
 using Claims.RulesEngine;
@@ -7,14 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddEventBus();
 builder.Services.AddRulesEngine();
-
-// Register handlers for claims
-builder.Services.AddScoped<Claims.Application.Claims.SubmitClaimHandler>();
-builder.Services.AddScoped<Claims.Application.Claims.GetClaimByIdHandler>();
-
-// Register handlers for work orders
-builder.Services.AddScoped<Claims.Application.WorksOrders.CreateWorkOrderHandler>();
-builder.Services.AddScoped<Claims.Application.WorksOrders.GetWorkOrderByIdHandler>();
+builder.Services.AddApplication();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
