@@ -99,6 +99,26 @@ public class SubmitClaimHandler
                     ClaimId = claim.Id,
                     Type = savedWorkOrder.Type
                 }, cancellationToken);
+
+                await _eventPublisher.PublishAsync(new ClaimApproved
+                {
+                    ClaimId = claim.Id,
+                    CustomerId = claim.CustomerId,
+                    Type = claim.Type,
+                    Amount = claim.Amount,
+                    WorkOrderId = savedWorkOrder.Id
+                }, cancellationToken);
+            }
+            else if (claim.Status == ClaimStatus.Rejected)
+            {
+                await _eventPublisher.PublishAsync(new ClaimRejected
+                {
+                    ClaimId = claim.Id,
+                    CustomerId = claim.CustomerId,
+                    Type = claim.Type,
+                    Amount = claim.Amount,
+                    Reason = claimDecision.Reason
+                }, cancellationToken);
             }
         }
 
