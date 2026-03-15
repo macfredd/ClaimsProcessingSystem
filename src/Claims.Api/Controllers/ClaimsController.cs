@@ -1,4 +1,5 @@
 using Claims.Application.Claims;
+using Claims.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Claims.Api.Controllers;
@@ -33,7 +34,7 @@ public class ClaimsController : ControllerBase
         return Created($"/api/claims/{claim.Id}", new ClaimResponse(
             claim.Id,
             claim.CustomerId,
-            claim.Type,
+            claim.Type.ToString(),
             claim.Amount,
             claim.Description,
             claim.Status.ToString(),
@@ -57,7 +58,7 @@ public class ClaimsController : ControllerBase
         return Ok(new ClaimResponse(
             claim.Id,
             claim.CustomerId,
-            claim.Type,
+            claim.Type.ToString(),
             claim.Amount,
             claim.Description,
             claim.Status.ToString(),
@@ -66,7 +67,7 @@ public class ClaimsController : ControllerBase
     }
 }
 
-public record SubmitClaimRequest(string CustomerId, string Type, decimal Amount, string? Description);
+public record SubmitClaimRequest(string CustomerId, ClaimType Type, decimal Amount, string? Description);
 
 public record ClaimResponse(
     Guid Id,

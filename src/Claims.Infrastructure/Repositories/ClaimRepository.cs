@@ -28,4 +28,10 @@ internal class ClaimRepository : IClaimRepository
     {
         return await _context.Claims.FindAsync([id], cancellationToken);
     }
+
+    public async Task UpdateAsync(Claim claim, CancellationToken cancellationToken = default)
+    {
+        _context.Claims.Update(claim);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 }

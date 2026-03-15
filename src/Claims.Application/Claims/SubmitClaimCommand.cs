@@ -1,3 +1,5 @@
+using Claims.Domain.Enums;
+
 namespace Claims.Application.Claims;
 
 /// <summary>
@@ -5,7 +7,7 @@ namespace Claims.Application.Claims;
 /// </summary>
 public record SubmitClaimCommand(
     string CustomerId,
-    string Type,
+    ClaimType Type,
     decimal Amount,
     string? Description
 );

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Claims.Application;
 using Claims.EventBus;
 using Claims.Infrastructure;
@@ -12,7 +13,11 @@ builder.Services.AddApplication();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 

@@ -8,5 +8,7 @@ namespace Claims.Application.Repositories;
 public interface IClaimRepository
 {
     Task<Claim> AddAsync(Claim claim, CancellationToken cancellationToken = default);
+
+    Task UpdateAsync(Claim claim, CancellationToken cancellationToken = default);
     Task<Claim?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 }

@@ -1,3 +1,5 @@
+using Claims.Domain.Enums;
+
 namespace Claims.Domain.Events;
 
 /// <summary>
@@ -7,6 +9,6 @@ public class ClaimSubmitted : DomainEvent
 {
     public Guid ClaimId { get; init; }
     public required string CustomerId { get; init; }
-    public required string Type { get; init; }
+    public ClaimType Type { get; init; }
     public decimal Amount { get; init; }
 }

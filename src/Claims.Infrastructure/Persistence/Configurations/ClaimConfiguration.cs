@@ -21,6 +21,7 @@ internal class ClaimConfiguration : IEntityTypeConfiguration<Claim>
         builder.Property(c => c.Type)
             .HasColumnName("type")
             .IsRequired()
+            .HasConversion<string>()
             .HasMaxLength(50);
 
         builder.Property(c => c.Amount)
