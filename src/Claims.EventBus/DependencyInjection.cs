@@ -10,7 +10,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddEventBus(this IServiceCollection services)
     {
-        services.AddSingleton<IEventPublisher, InMemoryEventBus>();
+        services.AddSingleton<IEventBus, InMemoryEventBus>();
+        services.AddSingleton<IEventPublisher>(sp => sp.GetRequiredService<IEventBus>());
         return services;
     }
 }
